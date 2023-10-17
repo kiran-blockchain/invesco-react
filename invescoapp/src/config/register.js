@@ -20,4 +20,10 @@ export const RegisterConfig ={
         name:"ConfirmPassword",
         id:"ConfirmPassword"
     },
+    Country:{
+        label:"Country",
+        placeholder:"Select Country",
+        name:"Country",
+        id:"Country"
+    }
 }
