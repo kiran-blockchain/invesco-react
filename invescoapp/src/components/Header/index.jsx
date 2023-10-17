@@ -13,11 +13,26 @@ const Header = (props) => {
 
     const buildNav = () => {
         return props.config.navItems.map((item, index) => {
-            return (
-                <li class="nav-item" key={item.index}>
-                    <a class="nav-link" href="#">{item.name}</a>
+            if (item.subItems && item.subItems.length>0) {
+               return <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {item.name}
+                    </a>
+                    <ul class="dropdown-menu">
+                        {item.subItems.map((sub, index) => {
+                            return (
+                                <li><a class="dropdown-item" href="#">{sub.name}</a></li>
+                            )
+                        })}
+                    </ul>
                 </li>
-            )
+            } else {
+                return (
+                    <li class="nav-item" key={item.index}>
+                        <a class="nav-link" href="#">{item.name}</a>
+                    </li>
+                )
+            }
         });
     }
     return (
@@ -30,7 +45,7 @@ const Header = (props) => {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                       {buildNav()}
+                        {buildNav()}
                     </ul>
                 </div>
             </div>

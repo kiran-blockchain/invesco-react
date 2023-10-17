@@ -19,7 +19,19 @@ export const HeaderConfig = {
         {
             index: 4,
             name: "Products",
-            url: "/products"
+            url: "/products",
+            subItems:[
+                {
+                    index: 1,
+                    name: "Apparel",
+                    url: "/apparel",
+                },
+                {
+                    index: 2,
+                    name: "Electronics",
+                    url: "/electronics",
+                }
+            ]
         },
         {
             index: 5,
@@ -28,6 +40,11 @@ export const HeaderConfig = {
         },
         {
             index: 6,
+            name: "Invoice",
+            url: "/invoice"
+        },
+        {
+            index: 7,
             name: "Logout",
             url: "/logout"
         },
