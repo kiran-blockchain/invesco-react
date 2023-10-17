@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 
 const Header = (props) => {
-
-
     console.log("1. header loading.....");
-
     //a hook that executes after loading the component
     useEffect(() => {
         console.log("2. Loading completed...")
