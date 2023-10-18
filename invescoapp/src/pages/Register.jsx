@@ -4,6 +4,7 @@ import Dropdown from "../components/Dropdown";
 import Textbox from "../components/Textbox";
 import { RegisterConfig } from "../config/register";
 import axios from "axios";
+import Radio from "../components/Radio";
 
 const Register = () => {
     const [profile,setProfile] = useState({
@@ -42,6 +43,7 @@ const Register = () => {
         
     };
     return (
+
         <div className="container mt-5">
             <Textbox config={RegisterConfig.Username} 
             handleChange={captureChanges} />
@@ -59,6 +61,7 @@ const Register = () => {
                 list={listOfCountries}
                 handleChange={captureChanges}
              />
+             <Radio  config={RegisterConfig.Gender} handleChange={captureChanges}/>
             <div className="mb-3">
                 <button className="btn btn-primary">Register</button>
             </div>
