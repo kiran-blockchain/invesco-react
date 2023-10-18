@@ -1,4 +1,5 @@
 
+import { AppRoutes } from "./AppRoutes";
 import Counter from "./components/Counter";
 import Header from "./components/Header";
 import { HeaderConfig } from "./config/header";
@@ -13,9 +14,7 @@ const App = () => {
   return (
     <div>
       <Header config={HeaderConfig} />
-      {/* <Products/>  */}
-      <Register />
-      {/* <Counter/> */}
+      <AppRoutes/>
     </div>
   )
 }

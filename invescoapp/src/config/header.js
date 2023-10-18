@@ -20,18 +20,18 @@ export const HeaderConfig = {
             index: 4,
             name: "Products",
             url: "/products",
-            subItems:[
-                {
-                    index: 1,
-                    name: "Apparel",
-                    url: "/apparel",
-                },
-                {
-                    index: 2,
-                    name: "Electronics",
-                    url: "/electronics",
-                }
-            ]
+            // subItems:[
+            //     {
+            //         index: 1,
+            //         name: "Apparel",
+            //         url: "/apparel",
+            //     },
+            //     {
+            //         index: 2,
+            //         name: "Electronics",
+            //         url: "/electronics",
+            //     }
+            // ]
         },
         {
             index: 5,

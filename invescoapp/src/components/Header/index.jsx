@@ -1,18 +1,17 @@
 import { useEffect } from "react";
-
+import {useNavigate} from 'react-router'
 const Header = (props) => {
-    // //console.log("1. header loading.....");
-    // //a hook that executes after loading the component
-    // useEffect(() => {
-    //     console.log("2. Loading completed...")
-    // }, []);
-    // //console.log("3. after effect");
+    //to perform click based navigation
+    const navigate = useNavigate();
 
     const buildNav = () => {
         return props.config.navItems.map((item, index) => {
             if (item.subItems && item.subItems.length>0) {
                return <li key={item.name} className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a className="nav-link dropdown-toggle" href="#"
+                    role="button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false" >
                         {item.name}
                     </a>
                     <ul className="dropdown-menu">
@@ -26,7 +25,9 @@ const Header = (props) => {
             } else {
                 return (
                     <li className="nav-item" key={item.index}>
-                        <a className="nav-link" href="#">{item.name}</a>
+                        <a className="nav-link" href="#" onClick={e=>{
+                            navigate(item.url);
+                        }} >{item.name}</a>
                     </li>
                 )
             }
