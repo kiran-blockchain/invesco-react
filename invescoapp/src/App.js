@@ -5,15 +5,16 @@ import { HeaderConfig } from "./config/header";
 import Products from "./pages/Products";
 import Register from "./pages/Register";
 //Every component should start with capital letter
-const App = ()=>{
-  
+const App = () => {
+
   //every component must have a return statement
   //it should return only only root tag
-  return(
+
+  return (
     <div>
-      <Header config={HeaderConfig}/>
-       <Products/> 
-      {/* <Register/> */}
+      <Header config={HeaderConfig} />
+      {/* <Products/>  */}
+      <Register />
       {/* <Counter/> */}
     </div>
   )

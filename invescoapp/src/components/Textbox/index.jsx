@@ -5,6 +5,9 @@ const Textbox = (props) => {
     const [data,setData]= useState("");
     const handleChange =(e)=>{
         console.log(e.target.name)
+        //call the parent component callback
+        props.handleChange(e);
+        
         setData(e.target.value);
     }
     return (

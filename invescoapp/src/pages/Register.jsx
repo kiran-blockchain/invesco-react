@@ -6,6 +6,12 @@ import { RegisterConfig } from "../config/register";
 import axios from "axios";
 
 const Register = () => {
+    const [profile,setProfile] = useState({
+        // Username:"",
+        // Password:"",
+        // ConfirmPassword:"",
+        // Country:""
+    });
     const [listOfCountries, setCountries] = useState([]);
     const countryListUrl = "https://restcountries.com/v2/all";
     console.log("1.Register-i am before use effect");
@@ -25,16 +31,40 @@ const Register = () => {
         };
         fetchData();
     }, []);
+
     console.log("4. After use Effect");
+   
+    const captureChanges =(e)=>{
+        //console.log(e.target.name+"="+e.target.value);
+        let register = profile;
+        register[e.target.name]=e.target.value;
+        setProfile({...register});
+        
+    };
     return (
         <div className="container mt-5">
-            <Textbox config={RegisterConfig.Username} />
-            <Textbox config={RegisterConfig.Password} />
-            <Textbox config={RegisterConfig.ConfirmPassword} />
-            <Dropdown config={RegisterConfig.Country} list={listOfCountries} />
+            <Textbox config={RegisterConfig.Username} 
+            handleChange={captureChanges} />
+
+            <Textbox 
+            config={RegisterConfig.Password}
+            handleChange={captureChanges}  />
+
+            <Textbox 
+            config={RegisterConfig.ConfirmPassword}
+            handleChange={captureChanges} />
+            
+            <Dropdown 
+                config={RegisterConfig.Country} 
+                list={listOfCountries}
+                handleChange={captureChanges}
+             />
             <div className="mb-3">
                 <button className="btn btn-primary">Register</button>
             </div>
+            {
+                JSON.stringify(profile)
+            }
         </div>
     )
 }
