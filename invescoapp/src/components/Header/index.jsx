@@ -17,7 +17,9 @@ const Header = (props) => {
                     <ul className="dropdown-menu">
                         {item.subItems.map((sub, index) => {
                             return (
-                                <li key={sub.name}><a className="dropdown-item" href="#">{sub.name}</a></li>
+                                <li key={sub.name}><a className="dropdown-item" href="#" onClick={e=>{
+                                    navigate(sub.url);
+                                }}>{sub.name}</a></li>
                             )
                         })}
                     </ul>
