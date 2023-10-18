@@ -3,28 +3,28 @@ import { useEffect, useState } from "react";
 import Dropdown from "../components/Dropdown";
 import Textbox from "../components/Textbox";
 import { RegisterConfig } from "../config/register";
+import axios from "axios";
 
 const Register = () => {
-    const [listOfCountries,setCountries]= useState([]);
+    const [listOfCountries, setCountries] = useState([]);
+    const countryListUrl = "https://restcountries.com/v2/all";
     console.log("1.Register-i am before use effect");
-    useEffect(()=>{
+    useEffect(() => {
         console.log("2. Register-i am loading before fetch");
-        fetch("https://restcountries.com/v2/all").then(response=>{
-            return response.json()
-        }).then(result=>{
-            
-            let convertedResult = result.map(x=>{
-                return {name:x.name,value:x.alpha2Code}
-            });
-            //console.log(convertedResult);
-            //use call back method setCountries to update the state.
-            setCountries(convertedResult);
-            console.log("3.Register-i am after setting the state");
-
-        }).catch(ex=>{
-            console.log(ex);
-        })
-    },[]);
+        const fetchData = async () => {
+            try {
+                const result = await axios.get(countryListUrl);
+                //[{name:"",value:""}]
+                let convertedResult = result.data.map(x => {
+                    return { name: x.name, value: x.alpha2Code }
+                });
+                setCountries(convertedResult);
+            } catch (ex) {
+                console.log("Error occurred");
+            }
+        };
+        fetchData();
+    }, []);
     console.log("4. After use Effect");
     return (
         <div className="container mt-5">

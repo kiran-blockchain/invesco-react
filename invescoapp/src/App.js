@@ -2,6 +2,7 @@
 import Counter from "./components/Counter";
 import Header from "./components/Header";
 import { HeaderConfig } from "./config/header";
+import Products from "./pages/Products";
 import Register from "./pages/Register";
 //Every component should start with capital letter
 const App = ()=>{
@@ -11,7 +12,8 @@ const App = ()=>{
   return(
     <div>
       <Header config={HeaderConfig}/>
-      <Register/>
+       <Products/> 
+      {/* <Register/> */}
       {/* <Counter/> */}
     </div>
   )
