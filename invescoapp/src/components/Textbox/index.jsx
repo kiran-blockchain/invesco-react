@@ -1,14 +1,23 @@
+import { useState } from "react";
+
 const Textbox = (props) => {
     const config = props.config;
+    const [data,setData]= useState("");
+    const handleChange =(e)=>{
+        console.log(e.target.name)
+        setData(e.target.value);
+    }
     return (
-    <div class="row mb-3">
-        <label for={config.id}
-            class="col-sm-2 col-form-label">{config.label}</label>
-        <div class="col-sm-6">
+    <div className="row mb-3">
+        <label htmlFor={config.id}
+            className="col-sm-2 col-form-label">{config.label}</label>
+        <div className="col-sm-6">
             <input type={config.type}
-                class="form-control"
+                className="form-control"
                 id={config.id}
                 name={config.name}
+                value={data}
+                onChange={handleChange}
                 placeholder={config.placeholder} />
         </div>
     </div>)

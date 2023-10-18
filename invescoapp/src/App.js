@@ -1,4 +1,5 @@
 
+import Counter from "./components/Counter";
 import Header from "./components/Header";
 import { HeaderConfig } from "./config/header";
 import Register from "./pages/Register";
@@ -11,6 +12,7 @@ const App = ()=>{
     <div>
       <Header config={HeaderConfig}/>
       <Register/>
+      {/* <Counter/> */}
     </div>
   )
 }
