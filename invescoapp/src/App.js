@@ -4,13 +4,17 @@ import { AppRoutes } from "./AppRoutes";
 import Header from "./components/Header";
 import { HeaderConfig } from "./config/header";
 import { CartContext } from "./providers/CartProvider";
+import { useTitle } from "./hooks/useTitle";
 //Every component should start with capital letter
 const App = () => {
   //every component must have a return statement
   //it should return only only root tag
   const [itemsInCart, setCartItems] = useState([]);
+  const {setTitle} = useTitle()
   const addItemToCart = (item) => {
+    
     setCartItems([...itemsInCart, item]);
+    setTitle(itemsInCart.length+1);
   };
   const removeFromCart = (item) => {
     setCartItems([...itemsInCart, item]);

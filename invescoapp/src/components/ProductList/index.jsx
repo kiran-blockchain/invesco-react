@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import "./style.css";
 import { CartContext } from "../../providers/CartProvider";
+import { useTitle } from "../../hooks/useTitle";
 const ProductList = (props) => {
-    const{addToCart} = useContext(CartContext)
+    const{addToCart} = useContext(CartContext);
+   
     const list = props.list;
     const buildList = () => {
         if (list && list.length > 0) {
