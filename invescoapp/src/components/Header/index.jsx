@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import {useNavigate} from 'react-router'
+import { CartContext } from "../../providers/CartProvider";
 const Header = (props) => {
     //to perform click based navigation
     const navigate = useNavigate();
+    const{cartItems} = useContext(CartContext)
 
     const buildNav = () => {
         return props.config.navItems.map((item, index) => {
@@ -46,7 +48,9 @@ const Header = (props) => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         {buildNav()}
+                    
                     </ul>
+                    <button className="btn btn-secondary">Cart-{cartItems.length}</button>
                 </div>
             </div>
         </nav>

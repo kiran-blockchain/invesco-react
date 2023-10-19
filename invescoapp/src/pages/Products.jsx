@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ProductList from "../components/ProductList";
 
 const Products = () => {
     //Create state object
@@ -27,7 +28,7 @@ const Products = () => {
 
     return (
         <div className="container mt-5">
-            <h6>{JSON.stringify(productList)}</h6>
+            <h6><ProductList list ={productList}/></h6>
         </div>)
 
 
