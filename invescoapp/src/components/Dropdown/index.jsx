@@ -14,7 +14,7 @@ const Dropdown = (props) => {
         }
     };
     const handleChange =(e)=>{
-       // props.handleChange(e);
+        props.handleChange(e);
         setData(e.target.value);
     };
     return (
@@ -33,4 +33,4 @@ const Dropdown = (props) => {
             </div>
         </div>)
 }
-export default Dropdown;
+export default memo(Dropdown);

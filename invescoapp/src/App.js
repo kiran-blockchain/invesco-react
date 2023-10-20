@@ -28,8 +28,8 @@ const App = () => {
         removeFromCart:removeFromCart}}
          >
         <Header config={HeaderConfig} />
-        {/* <AppRoutes /> */}
-        <Parent/>
+        <AppRoutes />
+        {/* <Parent/> */}
       </CartContext.Provider>
     </div>
   )

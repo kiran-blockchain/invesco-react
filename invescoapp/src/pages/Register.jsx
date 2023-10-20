@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import Textbox from "../components/Textbox";
 import { RegisterConfig } from "../config/register";
@@ -44,27 +44,31 @@ const Register = () => {
 
     console.log("4. After use Effect");
 
-
+    const handleChangeOnCallback = useCallback((e)=>{
+        captureChanges(e);
+    },[])
+    
     return (
 
         <div className="container mt-5">
             <Textbox config={RegisterConfig.Username}
-                handleChange={captureChanges} />
+                handleChange={handleChangeOnCallback} />
 
             <Textbox
                 config={RegisterConfig.Password}
-                handleChange={captureChanges} />
+                handleChange={handleChangeOnCallback} />
 
             <Textbox
                 config={RegisterConfig.ConfirmPassword}
-                handleChange={captureChanges} />
+                handleChange={handleChangeOnCallback} />
 
             <Dropdown
                 config={RegisterConfig.Country}
                 list={listOfCountries}
-                handleChange={captureChanges}
+                handleChange={handleChangeOnCallback}
             />
-            <Radio config={RegisterConfig.Gender} handleChange={captureChanges} />
+            <Radio config={RegisterConfig.Gender} 
+            handleChange={handleChangeOnCallback} />
             {showError()}
             <div className="mb-3">
                 <button className="btn btn-primary" onClick={register}>Register</button>
