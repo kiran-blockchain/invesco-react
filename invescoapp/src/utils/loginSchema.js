@@ -7,7 +7,7 @@ export const LoginSchema = yup.object({
         .max(10, 'User name cannot be more than 10 characters')
         .required('User name required'),
     Password: yup.string()
-        .required('Password required')
+        .required('Password is required')
         .matches(/[0-9]/, getCharacterValidation('digit'))
         .matches(/[A-Z]/, getCharacterValidation('uppercase'))
         .matches(/[a-z]/, getCharacterValidation('lowercase'))

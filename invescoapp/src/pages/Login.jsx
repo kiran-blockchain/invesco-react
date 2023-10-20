@@ -1,52 +1,61 @@
 import { useFormik } from "formik";
-import Textbox from "../components/Textbox";
-import { RegisterConfig } from "../config/register";
-import { useProfile } from "../hooks/useProfile";
-import { LoginSchema } from "../utils/loginSchema";
 
-const Login = () => {
-    const { captureChanges, login, status } = useProfile();
+import * as yup from 'yup';
+import {LoginSchema } from "../utils/loginSchema";
+ const Login = () => {
     const formik = useFormik({
         initialValues: {
             Username: "",
-            Password: "",
-   
+            Password: ""
         },
         validationSchema: LoginSchema,
         onSubmit: values => {
             console.log(values);
         },
+
     })
-    const showError = () => {
-        if (status.error != '') {
-            return (
-                <div className=" col-sm-6 mb-3">
-                    <label className=" text-danger">
-                        Invalid username or password
-                    </label>
-                </div>)
-        } else {
-            return null;
-        }
-    }
     const handleChange =(e)=>{
-        //formik.handleChange(e);
+        console.log("I am called");
+        formik.handleChange(e);
     }
     return (
-        <form className="container mt-5">
-            <Textbox config={RegisterConfig.Username}
-                handleChange={handleChange} 
-                formik={formik}/>
-
-            <Textbox config={RegisterConfig.Password}
-               handleChange={handleChange} 
-                formik={formik}/>
-            {showError()}
-            <div className="mb-3">
-                <button className="btn btn-primary" onClick={formik.handleSubmit}>Login</button>
+        <form>
+            <div class="row mb-3">
+                <label for="Username" class="col-sm-2 col-form-label">Enter Username</label>
+                <div class="col-sm-3 " >
+                    <input type="text" class="form-control" id="Username"
+                        onChange={handleChange}
+                        value={formik.values.Username}
+                        name="Username" />
+                    {formik.touched.Username && formik.errors.Username ?
+                     (<div class="text-danger">
+                        {formik.errors.Username}
+                    </div>) : null}
+                </div>
             </div>
+
+            <div class="row mb-3">
+                <label for="password" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-3">
+                    <input type="password" class="form-control" id="Password"
+                        name="Password"
+                        onChange={formik.handleChange}
+                        value={formik.values.Password} />
+                    {formik.touched.Password && formik.errors.Password ? (<div class="text-danger">
+                        {formik.errors.Password}
+                    </div>) : null}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-sm-3">
+                    <button onClick={formik.handleSubmit} className="btn btn-success">Sign In</button>
+                </div>
+            </div>
+            <h6>{JSON.stringify(formik.errors)}</h6>
         </form>
+
     )
-}
+};
+
 
 export default Login;
