@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState,memo } from "react";
 
 const Dropdown = (props) => {
+    console.log("dropdown loading....");
     const [data,setData] = useState("");
     const config = props.config;
     const buildOptions = () => {
@@ -13,7 +14,7 @@ const Dropdown = (props) => {
         }
     };
     const handleChange =(e)=>{
-        props.handleChange(e);
+       // props.handleChange(e);
         setData(e.target.value);
     };
     return (

@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { HeaderConfig } from "./config/header";
 import { CartContext } from "./providers/CartProvider";
 import { useTitle } from "./hooks/useTitle";
+import { Parent } from "./components/MemoDemo";
 //Every component should start with capital letter
 const App = () => {
   //every component must have a return statement
@@ -27,7 +28,8 @@ const App = () => {
         removeFromCart:removeFromCart}}
          >
         <Header config={HeaderConfig} />
-        <AppRoutes />
+        {/* <AppRoutes /> */}
+        <Parent/>
       </CartContext.Provider>
     </div>
   )

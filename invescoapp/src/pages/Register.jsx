@@ -1,11 +1,12 @@
 
 import { useEffect, useState } from "react";
-import Dropdown from "../components/Dropdown";
+
 import Textbox from "../components/Textbox";
 import { RegisterConfig } from "../config/register";
 import axios from "axios";
 import Radio from "../components/Radio";
 import { useProfile } from "../hooks/useProfile";
+import Dropdown from "../components/Dropdown";
 
 const Register = () => {
     const { captureChanges, register, status } = useProfile();
