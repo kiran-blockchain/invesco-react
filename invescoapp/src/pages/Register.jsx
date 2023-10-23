@@ -18,7 +18,7 @@ const Register = () => {
             ConfirmPassword:"",
             Firstname:"kiran",
             LastName:"kiran",
-            Country:"IN"
+            Country:""
         },
         validationSchema: RegisterSchema,
         onSubmit: values => {
@@ -89,12 +89,18 @@ const Register = () => {
                 config={RegisterConfig.Country}
                 list={listOfCountries}
                 handleChange={handleChangeOnCallback}
+                formik={formik}
             />
             <Radio config={RegisterConfig.Gender} 
             handleChange={handleChangeOnCallback} />
             {showError()}
             <div className="mb-3">
-                <button type="button" className="btn btn-primary" onClick={formik.handleSubmit}>Register</button>
+                <button type="button" className="btn btn-primary" onClick={e=>{
+                    console.log(formik.isValid);
+                    if(formik.isValid){
+                        register(formik.values);
+                    }
+                }}>Register</button>
             </div>
 
         </form>

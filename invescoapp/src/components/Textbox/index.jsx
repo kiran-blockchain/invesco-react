@@ -13,7 +13,7 @@ const Textbox = (props) => {
     const showError = () => {
        
             if (formik.errors[config.name]) {
-                return <div class="text-danger">
+                return <div class="col-sm-6 text-danger">
                     {formik.errors[config.name]}
                 </div>
             } else {
