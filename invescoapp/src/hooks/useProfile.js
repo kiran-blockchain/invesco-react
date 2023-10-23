@@ -29,8 +29,8 @@ export const useProfile = () => {
         }
 
     };
-    const register = () => {
-
+    const register = (data) => {
+        console.log(data);
     };
     return { profile, status, captureChanges, login, register }
 };

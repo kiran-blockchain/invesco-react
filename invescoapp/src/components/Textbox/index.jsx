@@ -3,22 +3,23 @@ import { memo, useState } from "react";
 const Textbox = (props) => {
     const config = props.config;
     const formik = props.formik;
-    //const [data, setData] = useState(formik.values[config.name]);
-    const handleChange = (e) => {
-        console.log(e.target.name)
-       // setData(e.target.value);
-        formik.handleChange(e);
-        console.log(formik.errors[config.name]);
 
-    }
+    // const handleChange = (e) => {
+    //     console.log(e.target.name)
+    //     props
+    //    //formik.handleChange(e);
+
+    // }
     const showError = () => {
-        if (formik.touched[config.name] && formik.errors[config.name]) {
-          return  <div class="text-danger">
-                {formik.errors[config.name]}
-            </div>
-        } else {
-            return null
-        }
+       
+            if (formik.errors[config.name]) {
+                return <div class="text-danger">
+                    {formik.errors[config.name]}
+                </div>
+            } else {
+                return null
+            }
+        
     }
     return (
         <div className="row mb-3">
@@ -29,12 +30,13 @@ const Textbox = (props) => {
                     className="form-control"
                     id={config.id}
                     name={config.name}
+                    onBlur={formik.handleBlur}
                     value={formik.values[config.name]}
-                    onChange={handleChange}
+                    onChange={props.handleChange}
                     placeholder={config.placeholder} />
 
             </div>
-            {showError() }
+            {showError()}
         </div>)
 }
 export default Textbox;

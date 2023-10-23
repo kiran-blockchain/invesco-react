@@ -7,8 +7,26 @@ import axios from "axios";
 import Radio from "../components/Radio";
 import { useProfile } from "../hooks/useProfile";
 import Dropdown from "../components/Dropdown";
+import { useFormik } from "formik";
+import { RegisterSchema } from "../utils/registerSchema";
 
 const Register = () => {
+    const formik = useFormik({
+        initialValues: {
+            Username: "",
+            Password: "",
+            ConfirmPassword:"",
+            Firstname:"kiran",
+            LastName:"kiran",
+            Country:"IN"
+        },
+        validationSchema: RegisterSchema,
+        onSubmit: values => {
+            //console.log(values);
+            register(values)
+        }
+    });
+
     const { captureChanges, register, status } = useProfile();
     const showError = () => {
         if (status.error != '') {
@@ -43,24 +61,29 @@ const Register = () => {
     }, []);
 
     console.log("4. After use Effect");
-
+  
     const handleChangeOnCallback = useCallback((e)=>{
+        formik.handleChange(e);
         captureChanges(e);
     },[])
     
     return (
 
-        <div className="container mt-5">
-            <Textbox config={RegisterConfig.Username}
-                handleChange={handleChangeOnCallback} />
+        <form className="container mt-5">
+            <Textbox 
+            config={RegisterConfig.Username}
+            handleChange={handleChangeOnCallback}
+            formik={formik} />
 
             <Textbox
                 config={RegisterConfig.Password}
-                handleChange={handleChangeOnCallback} />
+                handleChange={handleChangeOnCallback} 
+                formik={formik}/>
 
             <Textbox
                 config={RegisterConfig.ConfirmPassword}
-                handleChange={handleChangeOnCallback} />
+                handleChange={handleChangeOnCallback}
+                formik={formik} />
 
             <Dropdown
                 config={RegisterConfig.Country}
@@ -71,10 +94,10 @@ const Register = () => {
             handleChange={handleChangeOnCallback} />
             {showError()}
             <div className="mb-3">
-                <button className="btn btn-primary" onClick={register}>Register</button>
+                <button type="button" className="btn btn-primary" onClick={formik.handleSubmit}>Register</button>
             </div>
 
-        </div>
+        </form>
     )
 }
 export default Register;
