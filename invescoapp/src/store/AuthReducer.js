@@ -24,6 +24,7 @@ const AuthReducer = createSlice({
     },
     reducers: {
         logout: (state, action) => {
+            console.log(action);
             return {
                 isLoading: false,
                 data: "",
@@ -37,8 +38,7 @@ const AuthReducer = createSlice({
         builder.addCase(LoginAction.pending, (state, action) => {
             return { ...state, isLoading: true, error: null }
         })
-
-        //incase of sucess
+        //incase of success
         builder.addCase(LoginAction.fulfilled, (state, action) => {
             if (action.payload && action.payload.token) {
                 return { ...state, isLoading: false, error: null, data: action.payload.token, isAuthenticated: true }
@@ -46,7 +46,6 @@ const AuthReducer = createSlice({
             else {
                 return { ...state, isLoading: false, error: "user is not Authenticated" }
             }
-
         })
         // inc case of failure
         builder.addCase(LoginAction.rejected, (state, action) => {
