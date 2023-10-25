@@ -23,22 +23,26 @@ const AuthReducer = createSlice({
         isAuthenticated: false
     },
     extraReducers:(builder)=>{
+        // in case of progress
         builder.addCase(LoginAction.pending,(state,action)=>{
-            return{...state,isLoading:true}
-        })// in case of progress
+            return{...state,isLoading:true,error:null}
+        })
+       
+        //incase of sucess
         builder.addCase(LoginAction.fulfilled,(state,action)=>{
             if(action.payload&& action.payload.token){
-                return{...state,isLoading:false,data:action.payload.token,isAuthenticated:true}
+                return{...state,isLoading:false,error:null,data:action.payload.token,isAuthenticated:true}
             }
             else{
                 return{...state,isLoading:false,error:"user is not Authenticated"}
             }
             
-        })//incase of sucess
+        })
+        // inc case of failure
         builder.addCase(LoginAction.rejected,(state,action)=>{
             return{...state,isLoading:false,error:"user is not Authenticated"}
 
-        })// inc case of failure
+        })
     }
 });
 
