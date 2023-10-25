@@ -1,10 +1,13 @@
 import { useContext, useEffect } from "react";
 import {useNavigate} from 'react-router'
 import { CartContext } from "../../providers/CartProvider";
+import { useSelector } from "react-redux";
 const Header = (props) => {
     //to perform click based navigation
     const navigate = useNavigate();
-    const{cartItems} = useContext(CartContext)
+    //const{cartItems} = useContext(CartContext)
+    const cart = useSelector(x=>x.cart);
+    const cartItems = cart.cartItems;
 
     const buildNav = () => {
         return props.config.navItems.map((item, index) => {

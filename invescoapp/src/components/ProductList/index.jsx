@@ -2,8 +2,11 @@ import { useContext } from "react";
 import "./style.css";
 import { CartContext } from "../../providers/CartProvider";
 import { useTitle } from "../../hooks/useTitle";
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../../store/CartReducer";
 const ProductList = (props) => {
-    const{addToCart} = useContext(CartContext);
+    //const{addToCart} = useContext(CartContext);
+    const dispatch = useDispatch();
    
     const list = props.list;
     const buildList = () => {
@@ -22,8 +25,12 @@ const ProductList = (props) => {
                             </p>
                             <p>
                                 <button className="btn btn-primary" onClick={e=>{
-                                    addToCart(item);
-                                }}>Add to Cart</button>
+                                   dispatch(addToCart(item));
+                                }}>+</button>
+                                    &nbsp;&nbsp;
+                                <button className="btn btn-danger" onClick={e=>{
+                                   dispatch(removeFromCart(item));
+                                }}>-</button>
                             </p>
                         </div>
                     </div>
