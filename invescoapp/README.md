@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+Steps to integrate redux for adding to cart and removing from the cart
+1. Install all the required dependencies
+2. Create CartReducer
+3. Add action methods called addToCart,removeFromCart
+4. Configure Store
+5. Wrap the application using provider
+6. in Products Page invoke addTocart and removeFromCart
+7. Header useSelector to increment the count
+8. in the cart page again useSelector to display the products.
+
