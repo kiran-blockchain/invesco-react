@@ -2,7 +2,10 @@ import { useFormik } from "formik";
 
 import * as yup from 'yup';
 import {LoginSchema } from "../utils/loginSchema";
+import { useDispatch } from "react-redux";
+import { LoginAction } from "../store/AuthReducer";
  const Login = () => {
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             Username: "",
@@ -11,6 +14,7 @@ import {LoginSchema } from "../utils/loginSchema";
         validationSchema: LoginSchema,
         onSubmit: values => {
             console.log(values);
+            dispatch(LoginAction(values));
         }
     })
     const handleChange =(e)=>{
