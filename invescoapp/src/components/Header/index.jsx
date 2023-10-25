@@ -1,28 +1,37 @@
 import { useContext, useEffect } from "react";
-import {useNavigate} from 'react-router'
+import { useNavigate } from 'react-router'
 import { CartContext } from "../../providers/CartProvider";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/AuthReducer";
 const Header = (props) => {
+    const auth = useSelector(x => x.auth);
     //to perform click based navigation
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     //const{cartItems} = useContext(CartContext)
-    const cart = useSelector(x=>x.cart);
+    const cart = useSelector(x => x.cart);
     const cartItems = cart.cartItems;
 
     const buildNav = () => {
-        return props.config.navItems.map((item, index) => {
-            if (item.subItems && item.subItems.length>0) {
-               return <li key={item.name} className="nav-item dropdown">
+        let navItems = props.config.navItems
+        if (auth.isAuthenticated) {
+            navItems = props.config.navItems.filter(x => x.index > 3)
+        } else {
+            navItems = props.config.navItems.filter(x => x.index <= 3)
+        }
+        return navItems.map((item, index) => {
+            if (item.subItems && item.subItems.length > 0) {
+                return <li key={item.name} className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#"
-                    role="button" 
-                    data-bs-toggle="dropdown" 
-                    aria-expanded="false" >
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false" >
                         {item.name}
                     </a>
                     <ul className="dropdown-menu">
                         {item.subItems.map((sub, index) => {
                             return (
-                                <li key={sub.name}><a className="dropdown-item" href="#" onClick={e=>{
+                                <li key={sub.name}><a className="dropdown-item" href="#" onClick={e => {
                                     navigate(sub.url);
                                 }}>{sub.name}</a></li>
                             )
@@ -30,10 +39,17 @@ const Header = (props) => {
                     </ul>
                 </li>
             } else {
+
                 return (
                     <li className="nav-item" key={item.index}>
-                        <a className="nav-link" href="#" onClick={e=>{
-                            navigate(item.url);
+                        <a className="nav-link" href="#" onClick={e => {
+                            if (item.name == 'Logout') {
+                                dispatch(logout());
+                                navigate("/login");
+                            }
+                            else {
+                                navigate(item.url);
+                            }
                         }} >{item.name}</a>
                     </li>
                 )
@@ -51,7 +67,7 @@ const Header = (props) => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         {buildNav()}
-                    
+
                     </ul>
                     <button className="btn btn-secondary">Cart-{cartItems.length}</button>
                 </div>

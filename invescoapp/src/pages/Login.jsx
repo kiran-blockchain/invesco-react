@@ -4,9 +4,11 @@ import * as yup from 'yup';
 import { LoginSchema } from "../utils/loginSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { LoginAction } from "../store/AuthReducer";
+import { useNavigate } from "react-router";
 const Login = () => {
     const dispatch = useDispatch();
     const auth = useSelector(x => x.auth);
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             Username: "",
@@ -36,6 +38,11 @@ const Login = () => {
             return (<label className="text-danger">{auth.error}</label>)
         } else { 
             return null 
+        }
+    }
+    const navigateToProducts =()=>{
+        if(auth.isAuthenticated){
+            navigate("/products");
         }
     }
     return (
@@ -75,6 +82,7 @@ const Login = () => {
                 </div>
             </div>
             {showError()}
+            {navigateToProducts()}
         </form>
 
     )
