@@ -9,16 +9,18 @@ import { useProfile } from "../hooks/useProfile";
 import Dropdown from "../components/Dropdown";
 import { useFormik } from "formik";
 import { RegisterSchema } from "../utils/registerSchema";
+import { Calendar } from "primereact/calendar";
 
 const Register = () => {
+    const [date,setDate] = useState();
     const formik = useFormik({
         initialValues: {
             Username: "",
             Password: "",
-            ConfirmPassword:"",
-            Firstname:"kiran",
-            LastName:"kiran",
-            Country:""
+            ConfirmPassword: "",
+            Firstname: "kiran",
+            LastName: "kiran",
+            Country: ""
         },
         validationSchema: RegisterSchema,
         onSubmit: values => {
@@ -61,24 +63,24 @@ const Register = () => {
     }, []);
 
     console.log("4. After use Effect");
-  
-    const handleChangeOnCallback = useCallback((e)=>{
+
+    const handleChangeOnCallback = useCallback((e) => {
         formik.handleChange(e);
         captureChanges(e);
-    },[])
-    
+    }, [])
+
     return (
 
         <form className="container mt-5">
-            <Textbox 
-            config={RegisterConfig.Username}
-            handleChange={handleChangeOnCallback}
-            formik={formik} />
+            <Textbox
+                config={RegisterConfig.Username}
+                handleChange={handleChangeOnCallback}
+                formik={formik} />
 
             <Textbox
                 config={RegisterConfig.Password}
-                handleChange={handleChangeOnCallback} 
-                formik={formik}/>
+                handleChange={handleChangeOnCallback}
+                formik={formik} />
 
             <Textbox
                 config={RegisterConfig.ConfirmPassword}
@@ -91,13 +93,21 @@ const Register = () => {
                 handleChange={handleChangeOnCallback}
                 formik={formik}
             />
-            <Radio config={RegisterConfig.Gender} 
-            handleChange={handleChangeOnCallback} />
+            <Radio config={RegisterConfig.Gender}
+                handleChange={handleChangeOnCallback} />
             {showError()}
+            <div className="row mb-3">
+                <label htmlFor="dob"
+                    className="col-sm-2 col-form-label">Date of birth</label>
+                <div className="col-sm-6">
+                    <Calendar value={date} onChange={(e) => setDate(e.value)} />
+                </div>
+
+            </div>
             <div className="mb-3">
-                <button type="button" className="btn btn-primary" onClick={e=>{
+                <button type="button" className="btn btn-primary" onClick={e => {
                     console.log(formik.isValid);
-                    if(formik.isValid){
+                    if (formik.isValid) {
                         register(formik.values);
                     }
                 }}>Register</button>

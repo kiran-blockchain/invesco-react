@@ -6,6 +6,7 @@ import { HeaderConfig } from "./config/header";
 import { CartContext } from "./providers/CartProvider";
 import { useTitle } from "./hooks/useTitle";
 import { Parent } from "./components/MemoDemo";
+import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 //Every component should start with capital letter
 const App = () => {
   //every component must have a return statement
@@ -21,6 +22,7 @@ const App = () => {
     setCartItems([...itemsInCart, item]);
   };
   return (
+    
     <div>
       <CartContext.Provider value={{
          addToCart: addItemToCart,
